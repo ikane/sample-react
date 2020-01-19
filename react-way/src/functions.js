@@ -1,4 +1,7 @@
 
+import React, { createElement } from 'react';
+import ReactDOM from 'react-dom';
+
 let cachedData = [];
 
 const loadData = function () {
@@ -14,8 +17,14 @@ const loadData = function () {
 }
 
 const updateView = function () {
-    const lines = cachedData.map(line => `<li>${line}</li>`).join('');
-    $("#contents").html(`<ul>${lines}</ul>`);
+    //const lines = cachedData.map(line => `<li>${line}</li>`).join('');
+    //$("#contents").html(`<ul>${lines}</ul>`);
+
+    const lines = cachedData.map(line => createElement('li', null, line));
+    const what = createElement('ul', null, lines);
+    const where = document.getElementById('contents');
+
+    ReactDOM.render(what, where);
 }
 
 const change = function () {
